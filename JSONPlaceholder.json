@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "title": "Починить это приложение",
+    "description": "Проблемы с роутером",
+    "category": "Bug",
+    "status": "Done",
+    "priority": "High",
+    "createdAt": "2025-07-15T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": "Реализовать добавление задач",
+    "category": "Documentation",
+    "status": "To Do",
+    "priority": "Low",
+    "createdAt": "2025-07-10T14:30:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": "Добавить фильтр",
+    "category": "Documentation",
+    "status": "Done",
+    "priority": "Medium",
+    "createdAt": "2025-07-12T09:15:00.000Z"
+  },
+  {
+    "id": 4,
+    "title": "Адаптировать дизайн",
+    "description": "ПК и телефон",
+    "category": "Feature",
+    "status": "In Progress",
+    "priority": "Medium",
+    "createdAt": "2025-07-14T18:45:00.000Z"
+  }
+]
