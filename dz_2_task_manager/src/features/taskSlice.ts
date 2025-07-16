@@ -8,12 +8,14 @@ import {categories, statuses, priorities, defaultFilters} from "@/entities/model
 interface TaskState {
   tasks: Task[];
   filters: Filters;
+  loading: boolean;
 }
 
 const initialState: TaskState = {
   tasks: [],
   // tasks: initialTasks,
   filters: defaultFilters,
+  loading: false,
 };
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -62,6 +64,8 @@ export const deleteTask = createAsyncThunk(
   }
 );
 
+export const selectTasksLoading = (state: { tasks: TaskState }) => state.tasks.loading;
+
 const taskSlice = createSlice({
   name: "tasks",
   initialState,
@@ -91,11 +95,18 @@ const taskSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchTasks.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(fetchTasks.fulfilled, (state, action) => {
+        state.loading = false;
         state.tasks = action.payload.map(task => ({
           ...task,
           id: Number(task.id),
         }));
+      })
+      .addCase(fetchTasks.rejected, (state) => {
+        state.loading = false;
       })
       .addCase(createTask.fulfilled, (state, action) => {
         state.tasks.push({ ...action.payload, id: Number(action.payload.id) });

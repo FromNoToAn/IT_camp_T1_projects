@@ -7,7 +7,7 @@ import { categories, statuses, priorities} from "@/entities/model/tasks";
 import { useSelector, useDispatch } from "react-redux";
 // import { selectTasks, createTaskLocal, updateTaskLocal } from "@features/taskSlice";
 
-import { selectTasks, createTask, updateTask } from "@features/taskSlice";
+import { selectTasks, createTask, updateTask, selectTasksLoading } from "@features/taskSlice";
 import type { AppDispatch } from '@/entities/model/store';
 
 import styles from "./TaskDetails.module.css";
@@ -22,6 +22,7 @@ export default function TaskDetails({ id }: TaskDetailsProps)
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector(selectTasks);
+  const loading = useSelector(selectTasksLoading);
 
   const isNew = id === "new";
   const task = isNew ? undefined : tasks.find((t) => t.id === Number(id));
@@ -43,6 +44,15 @@ export default function TaskDetails({ id }: TaskDetailsProps)
   }, [isNew, task]);
 
   // console.log(isNew);
+  if (!isNew && loading){
+    return (
+      <div className={styles.container}>
+        <div className={styles.lit_container}>Загрузка задачи...</div>
+      </div>
+    );
+  }
+
+
   if (!isNew && !task) {
     return (
       <div className={styles.container}>
