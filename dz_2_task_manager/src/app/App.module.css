@@ -57,6 +57,8 @@
   line-height: 1.5;
   font-weight: 400;
 
+  -webkit-tap-highlight-color: transparent;
+
   color: var(--main_color);
   background-color: var(--black_color);
 
