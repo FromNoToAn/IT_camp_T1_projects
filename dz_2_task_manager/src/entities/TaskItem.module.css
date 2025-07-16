@@ -1,0 +1,69 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(var(--dark_dark_color));
+  font-family: var(----font-muller-medium);
+  color: rgba(var(--main_color));
+  padding: var(--mini-margin);
+  gap: calc(var(--mini-margin) / 4);
+  border-radius: var(--border-radius);
+  transition: 0.25s;
+}
+
+.card:hover {
+  background: rgba(var(--dark_color));
+}
+
+.title {
+  font-size: var(--font-mid-size);
+}
+
+.description {
+  color: rgba(var(--main_color), 0.7);
+  word-break: break-word;
+}
+
+.createdAt {
+  font-size: var(--font-mini-size);
+  color: rgba(var(--main_color), 0.5);
+}
+
+.chipRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: calc(var(--mini-margin) / 2);
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--mini-margin) / 4);
+  padding: calc(var(--mini-margin) / 4) calc(var(--mini-margin) / 2);
+  font-family: var(--font-muller-medium);
+  font-size: var(--font-mini-size);
+  background: rgb(var(--base_color_1));
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: calc(var(--border-radius) / 1.5);
+}
+
+.chip.status {
+  background: rgb(var(--base_color_2));
+}
+
+.chip.priority {
+  background: rgb(var(--base_color_3));
+}
+
+.this_button {
+  margin-left: auto;
+}
+
+.last_button_container
+{
+  display: block;
+  width: 100%;
+}
