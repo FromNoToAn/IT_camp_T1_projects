@@ -1,0 +1,114 @@
+.selectWrapper
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  background: none;
+  color: rgba(var(--black_color));
+}
+
+.label
+{
+  display: inline-flex;
+  font-family: var(--font-muller-medium);
+  font-size: var(--font-size);
+  color: rgba(var(--main_color));
+  padding-bottom: calc(var(--mini-margin) / 4);
+  text-transform: uppercase;
+}
+
+.selected
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-muller-medium);
+  font-size: var(--font-size);
+  text-align: center;
+  color: rgba(var(--black_color));
+  padding: calc(var(--mini-margin) / 4) calc(var(--mini-margin) / 2);
+  background: rgba(var(--main_color));
+  transition: ease-in-out 0.25s;
+  border-radius: calc(var(--border-radius) / 1.5);
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--black_color));
+  cursor: pointer;
+  transition: ease-in-out 0.25s;
+}
+
+.selectedOpen
+{
+  border-radius: calc(var(--border-radius) / 1.5) calc(var(--border-radius) / 1.5) 0 0;
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--main_color));
+  color: rgba(var(--main_color));
+  background: rgba(var(--gray_color));
+}
+
+.selected:hover,
+.selectWrapper:hover .selected
+{
+  color: rgba(var(--main_color));
+  background: rgba(var(--gray_color));
+}
+
+.optionsList
+{
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--index)));
+  pointer-events: none;
+  position: absolute;
+  font-family: var(--font-muller-medium);
+  font-size: var(--font-size);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+  color: rgba(var(--main_color));
+  background: rgba(var(--black_color));
+  border-radius: 0 0 calc(var(--border-radius) / 1.5) calc(var(--border-radius) / 1.5);
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--main_color));
+  transition: ease-in-out 0.25s;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.optionsListOpen
+{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  max-height: 350px;
+}
+
+.optionsList::-webkit-scrollbar-track
+{
+  background: transparent;
+}
+
+.optionsList::-webkit-scrollbar-thumb
+{
+  background-color: rgba(var(--black_color), 1);
+}
+
+.option
+{
+  padding: calc(var(--mini-margin) / 4) calc(var(--mini-margin) / 2);
+  cursor: pointer;
+  transition: ease-in-out 0.25s;
+}
+
+.option:hover
+{
+  background: rgba(var(--dark_color));
+}
+
+.selectedOption
+{
+  background: rgba(var(--dark_dark_color));
+} 

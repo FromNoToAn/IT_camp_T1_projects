@@ -40,7 +40,7 @@
   gap: var(--mini-margin);
 }
 
-.select,
+/* .select,
 .input {
   display: flex;
   width: 100%;
@@ -67,7 +67,7 @@
   color: var(--black_color);
   padding-bottom: calc(var(--mini-margin) / 4);
   text-transform: uppercase;
-}
+} */
 
 .delfilter {
   display: flex;

@@ -2,15 +2,15 @@
 
 @font-face {
   font-family: muller_bold;
-  src: url("/src/shared/MullerBold.woff2") format("woff2");
+  src: url("/src/shared/fonts/MullerBold.woff2") format("woff2");
 }
 @font-face {
   font-family: muller_medium;
-  src: url("/src/shared/MullerMedium.woff2") format("woff2");
+  src: url("/src/shared/fonts/MullerMedium.woff2") format("woff2");
 }
 @font-face {
   font-family: muller_regular;
-  src: url("/src/shared/MullerRegular.woff2") format("woff2");
+  src: url("/src/shared/fonts/MullerRegular.woff2") format("woff2");
 }
 
 :global(*) {
@@ -39,7 +39,7 @@
   --big-margin: calc(var(--index) * 9 - 10vh);
   --mini-margin: calc(var(--index) * 1.25);
 
-  --border-size: calc(var(--index) / 4);
+  --border-size: calc(var(--index) / 6);
   --border-radius: calc(var(--index));
 
   --font-muller-bold: "muller_bold";
@@ -79,6 +79,11 @@
   background-color: rgba(var(--main_color));
 }
 
+button
+{
+  all: unset;
+}
+
 .custom_button {
   display: flex;
   align-items: center;
@@ -91,6 +96,7 @@
   text-align: center;
   cursor: pointer;
   border-radius: calc(var(--border-radius) / 1.5);
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--black_color));
   color: rgba(var(--black_color));
   background: rgba(var(--main_color));
   text-transform: uppercase;
@@ -104,6 +110,7 @@
 }
 
 .dark_button {
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--main_color));
   color: rgba(var(--main_color));
   background: rgba(var(--black_color));
 }
@@ -115,6 +122,7 @@
 .rainbow_button {
   z-index: 0;
   position: relative;
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--main_color));
   color: var(--main_color);
   background: rgba(var(--black_color));
   transition: 0.25s ease-in-out;
@@ -141,28 +149,29 @@
   opacity: 0;
 }
 
-.label {
+/* .label {
   display: block;
   font-family: var(--font-muller-medium);
   font-size: var(--font-size);
   color: var(--black_color);
   padding-bottom: calc(var(--mini-margin) / 4);
   text-transform: uppercase;
-}
+} */
 
-.select,
-.input {
+.input
+{
   display: flex;
   width: 100%;
   font-family: var(--font-muller-medium);
   font-size: var(--font-size);
   color: rgba(var(--black_color));
   padding: calc(var(--mini-margin) / 2);
-
   background: rgba(var(--main_color));
   transition: ease-in-out 0.25s;
-
   border-radius: calc(var(--border-radius) / 1.5);
+  /* border: var(--border-size) solid rgba(var(--black_color));
+  border-width: 0 var(--border-size) var(--border-size) 0; */
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--black_color));
 }
 
 input[type="date"] {

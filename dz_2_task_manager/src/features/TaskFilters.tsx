@@ -9,6 +9,7 @@ import global from "@app/App.module.css";
 import ClearIcon from "@mui/icons-material/Clear";
 
 import type { Filters } from "@/entities/model/tasks";
+import CustomSelect from "@/shared/CustomSelect";
 
 export default function TaskFilters() {
   const filters = useSelector(selectFilters);
@@ -29,29 +30,31 @@ export default function TaskFilters() {
     <div className={styles.card}>
       <div className={styles.sorting_container}>
         <div style={{ flex: 1 }}>
-          <label className={styles.label}>Сортировать по</label>
-          <select
-            className={styles.select}
+          <CustomSelect
+            label="Сортировать по"
+            options={[
+              { value: "createdAt", label: "Дате создания" },
+              { value: "title", label: "Заголовку" },
+              { value: "category", label: "Категории" },
+              { value: "status", label: "Статусу" },
+              { value: "priority", label: "Приоритету" },
+            ]}
             value={filters.sortBy || "createdAt"}
-            onChange={(e) => handleChange("sortBy", e.target.value)}
-          >
-            <option value="createdAt">Дате создания</option>
-            <option value="title">Заголовку</option>
-            <option value="category">Категории</option>
-            <option value="status">Статусу</option>
-            <option value="priority">Приоритету</option>
-          </select>
+            onChange={(v) => handleChange("sortBy", v)}
+            className={styles.select}
+          />
         </div>
         <div style={{ flex: 1 }}>
-          <label className={styles.label}>Порядок</label>
-          <select
-            className={styles.select}
+          <CustomSelect
+            label="Порядок"
+            options={[
+              { value: "asc", label: "По возрастанию" },
+              { value: "desc", label: "По убыванию" },
+            ]}
             value={filters.sortOrder || "asc"}
-            onChange={(e) => handleChange("sortOrder", e.target.value)}
-          >
-            <option value="asc">По возрастанию</option>
-            <option value="desc">По убыванию</option>
-          </select>
+            onChange={(v) => handleChange("sortOrder", v)}
+            className={styles.select}
+          />
         </div>
       </div>
       
@@ -63,57 +66,41 @@ export default function TaskFilters() {
           </button>
         </div>
         <div style={{ flex: 1 }}>
-          <label className={styles.label}>Категория</label>
-          <select
-            className={styles.select}
+          <CustomSelect
+            label="Категория"
+            options={[
+              { value: "All", label: "-" },
+              ...categories.map((c) => ({ value: c, label: c })),
+            ]}
             value={filters.category}
-            onChange={(e) => handleChange("category", e.target.value)}
-          >
-            <option className={styles.option} value="All">
-              -
-            </option>
-            {categories.map((c) => (
-              <option className={styles.option} key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+            onChange={(v) => handleChange("category", v)}
+            className={styles.select}
+          />
         </div>
         <div style={{ flex: 1 }}>
-          <label className={styles.label}>Статус</label>
-          <select
-            className={styles.select}
+          <CustomSelect
+            label="Статус"
+            options={[
+              { value: "All", label: "-" },
+              ...statuses.map((s) => ({ value: s, label: s })),
+            ]}
             value={filters.status}
-            onChange={(e) => handleChange("status", e.target.value)}
-          >
-            <option className={styles.option} value="All">
-              -
-            </option>
-            {statuses.map((s) => (
-              <option className={styles.option} key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
+            onChange={(v) => handleChange("status", v)}
+            className={styles.select}
+          />
         </div>
         <div style={{ flex: 1 }}>
-          <label className={styles.label}>Приоритет</label>
-          <select
-            className={styles.select}
+          <CustomSelect
+            label="Приоритет"
+            options={[
+              { value: "All", label: "-" },
+              ...priorities.map((p) => ({ value: p, label: p })),
+            ]}
             value={filters.priority}
-            onChange={(e) => handleChange("priority", e.target.value)}
-          >
-            <option className={styles.option} value="All">
-              -
-            </option>
-            {priorities.map((p) => (
-              <option className={styles.option} key={p} value={p}>
-                {p}
-              </option>
-            ))}
-          </select>
+            onChange={(v) => handleChange("priority", v)}
+            className={styles.select}
+          />
         </div>
-
         {/* Фильтр по дате создания, но это не требуется в задании */}
         {/* <div style={{ flex: 1 }}>
           <label className={styles.label}>Дата от</label>

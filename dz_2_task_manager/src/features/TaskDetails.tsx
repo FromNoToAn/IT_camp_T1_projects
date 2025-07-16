@@ -12,6 +12,7 @@ import type { AppDispatch } from '@/entities/model/store';
 
 import styles from "./TaskDetails.module.css";
 import global from "@app/App.module.css";
+import CustomSelect from "@/shared/CustomSelect";
 
 interface TaskDetailsProps {
   id: string;
@@ -110,45 +111,30 @@ export default function TaskDetails({ id }: TaskDetailsProps)
       </div>
       <div className={styles.lit_container}>
         <label className={global.label}>Категория</label>
-        <select
-          className={global.select}
+        <CustomSelect
+          options={categories.map((c) => ({ value: c, label: c }))}
           value={category}
-          onChange={(e) => setCategory(e.target.value as Task["category"])}
-        >
-          {categories.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
+          onChange={(v) => setCategory(v as Task["category"])}
+          className={global.select}
+        />
       </div>
       <div className={styles.lit_container}>
         <label className={global.label}>Статус</label>
-        <select
-          className={global.select}
+        <CustomSelect
+          options={statuses.map((s) => ({ value: s, label: s }))}
           value={status}
-          onChange={(e) => setStatus(e.target.value as Task["status"])}
-        >
-          {statuses.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
+          onChange={(v) => setStatus(v as Task["status"])}
+          className={global.select}
+        />
       </div>
       <div className={styles.lit_container}>
         <label className={global.label}>Приоритет</label>
-        <select
-          className={global.select}
+        <CustomSelect
+          options={priorities.map((p) => ({ value: p, label: p }))}
           value={priority}
-          onChange={(e) => setPriority(e.target.value as Task["priority"])}
-        >
-          {priorities.map((p) => (
-            <option key={p} value={p}>
-              {p}
-            </option>
-          ))}
-        </select>
+          onChange={(v) => setPriority(v as Task["priority"])}
+          className={global.select}
+        />
       </div>
       <div className={styles.buttonRow}>
         <button
