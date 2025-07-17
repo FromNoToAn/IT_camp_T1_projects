@@ -12,3 +12,4 @@
 
 - [Домашнее задание 1](https://github.com/FromNoToAn/IT_camp_T1_projects/tree/main/dz_1_task_manager)
 - [Домашнее задание 2](https://github.com/FromNoToAn/IT_camp_T1_projects/tree/main/dz_2_task_manager)
+- [Домашнее задание 3](https://github.com/FromNoToAn/IT_camp_T1_projects/tree/main/dz_3_task_manager_client_server)
