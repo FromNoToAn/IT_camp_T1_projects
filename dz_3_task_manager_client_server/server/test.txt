@@ -1,0 +1,9 @@
+curl -X POST http://localhost:3000/tasks ^
+  -H "Content-Type: application/json" ^
+  -d "{\"title\":\"Новая задача\",\"category\":\"Bug\",\"status\":\"To Do\",\"priority\":\"High\",\"description\":\"Тест\",\"createdAt\":\"2025-07-17T08:50:00.000Z\"}"
+
+curl -X PATCH http://localhost:3000/tasks/1 ^
+  -H "Content-Type: application/json" ^
+  -d "{\"title\":\"Обновлённая задача\",\"status\":\"In Progress\"}"
+
+curl -X DELETE http://localhost:3000/tasks/2

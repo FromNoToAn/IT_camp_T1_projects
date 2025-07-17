@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: var(--mini-margin);
+  gap: var(--mini-margin);
+  min-height: 100vh;
+  background: rgb(var(--black_color));
+  color: rgb(var(--main_color));
+}
+
+.title {
+  text-align: left;
+  font-size: var(--font-big-size);
+  font-family: var(--font-muller-meduim);
+  text-transform: uppercase;
+  color: rgb(var(--main_color));
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: var(--mini-margin);
+  justify-content: space-between;
+}
+
+.header > button {
+  align-self: center;
+}
