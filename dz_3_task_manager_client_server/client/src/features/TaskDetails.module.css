@@ -12,6 +12,11 @@
   background: rgba(var(--dark_dark_color));
 }
 
+/* .loader_container
+{
+  grid-template-columns: 1fr;
+} */
+
 @media (max-width: 500px)
 {
   .container {
@@ -19,7 +24,8 @@
   }
 }
 
-.lit_container {
+.lit_container
+{
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -41,11 +47,12 @@
   color: rgb(var(--base_color_3));
 }
 
-.input:focus,
+/* .input:focus,
 .select:focus,
-textarea:focus {
+textarea:focus
+{
   position: relative;
-}
+} */
 
 .buttonRow {
   display: flex;

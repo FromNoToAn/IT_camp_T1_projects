@@ -1,4 +1,4 @@
-# Менеджер задач (Task Manager)
+# Клиентская часть менеджера задач (Task Manager Client)
 
 Веб-приложение для управления задачами: просмотр, фильтрация, создание, редактирование и удаление задач. Реализовано с использованием современного стека фронтенд-технологий и архитектуры Feature-Sliced Design.
 
@@ -17,7 +17,6 @@
 - **Autoprefixer + PostCSS** — автоматизация CSS-префиксов
 - **Feature-Sliced Design** — современная архитектура проекта
 - **Path Aliases** — удобные алиасы для импортов (настроены в tsconfig и vite.config)
-- **MockAPI (REST API)** — долговременное хранение задач на внешнем jSON-сервере
 - **Адаптивная верстка** — поддержка desktop и mobile
 
 ---
@@ -47,27 +46,33 @@
 ## Инструкция по запуску проекта
 
 ### 1. **Клонирование репозитория:**
-   ```bash
-   git clone https://github.com/FromNoToAn/IT_camp_T1_projects.git
-   cd dz_2_task_manager
-   ```
+```bash
+git clone https://github.com/FromNoToAn/IT_camp_T1_projects.git
+cd dz_3_task_manager/client
+```
 
 ### 2. **Установка зависимостей:**
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-### 3. **Запуск dev-сервера:**
+### 3. **Создайте файл `.env` и укажите строку подключения к Task Manager Server.**
+```
+VITE_API_URL=https://your-server.onrender.com/tasks
+```
+
+### 4. **Запуск dev-сервера:**
 ```bash
 npm run dev
 ```
+
 После запуска приложение будет доступно по адресу:
 ```
 http://localhost:5173
 ```
 Также для быстрого просмотра функционала можно воспользоваться:
 ```
-http://t1-dz2.proffloud.ru
+http://t1-dz3.proffloud.ru
 ```
 
 ---

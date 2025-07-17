@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { Task, Category, Status, Priority, Filters } from "@/entities/model/tasks";
+import type { Task, Category, Status, Priority, Filters, SortBy, SortOrder } from "@/entities/model/tasks";
 import {categories, statuses, priorities, defaultFilters} from "@/entities/model/tasks";
 
 // import { tasks as initialTasks } from "@/data/tasks";
@@ -122,11 +122,7 @@ const taskSlice = createSlice({
 });
 
 export const selectTasks = (state: { tasks: TaskState }) => state.tasks.tasks;
-export const selectFilters = (state: { tasks: TaskState }) =>
-  state.tasks.filters;
-
-type SortField = keyof Pick<Task, "title" | "createdAt" | "priority" | "status" | "category">;
-type SortOrder = "asc" | "desc";
+export const selectFilters = (state: { tasks: TaskState }) => state.tasks.filters;
 
 const priorityOrder = (priority: Priority) => priorities.indexOf(priority);
 const statusOrder = (status: Status) => statuses.indexOf(status);
@@ -142,7 +138,7 @@ export const selectFilteredTasks = createSelector(
         return false;
       if (filters.priority !== "All" && task.priority !== filters.priority)
         return false;
-      if (filters.createdFrom && task.createdAt < filters.createdFrom)
+      if (filters.createdAt && task.createdAt < filters.createdAt)
         return false;
 
       return true;
@@ -150,7 +146,7 @@ export const selectFilteredTasks = createSelector(
 
     if (filters.sortBy)
     {
-      const sortBy = filters.sortBy as SortField;
+      const sortBy = filters.sortBy as SortBy;
       const sortOrder = filters.sortOrder as SortOrder;
 
       filtered = [...filtered].sort((a, b) => {
@@ -178,7 +174,6 @@ export const selectFilteredTasks = createSelector(
         }
 
         return sortOrder === "asc" ? comparison : -comparison;  
-        return 0;
       });
     }
 

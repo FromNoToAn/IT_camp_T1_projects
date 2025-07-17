@@ -36,7 +36,21 @@ async function getNextId(): Promise<number> {
  */
 router.get('/', async (req, res) => {
   try {
-    const tasks = await TaskModel.find();
+    const { title, createdAt } = req.query;
+    const filter: any = {};
+
+    if (title)
+    {
+      // Поиск по подстроке в названии (регистронезависимо)
+      filter.title = { $regex: title, $options: 'i' };
+    }
+    if (createdAt)
+    {
+      // Точное совпадение даты создания
+      filter.createdAt = createdAt;
+    }
+
+    const tasks = await TaskModel.find(filter);
     res.json(tasks);
   } catch {
     res.status(500).json({ error: 'Ошибка при получении задач' });

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { Task, Category, Status, Priority, Filters } from "@/entities/model/tasks";
+import type { Task, Category, Status, Priority, Filters, SortBy, SortOrder } from "@/entities/model/tasks";
 import {categories, statuses, priorities, defaultFilters} from "@/entities/model/tasks";
 
 // import { tasks as initialTasks } from "@/data/tasks";
@@ -23,6 +23,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const fetchTasks = createAsyncThunk<Task[]>(
   'tasks/fetchTasks',
   async () => {
+    // Для тестов задержки
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
     const response = await fetch(API_URL);
     return await response.json();
   }
@@ -44,23 +46,30 @@ export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (task: Task) => {
     const idStr = String(task.id);
+    const { id, createdAt, ...fieldsToUpdate } = task;
     const response = await fetch(`${API_URL}/${idStr}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(task),
+      body: JSON.stringify(fieldsToUpdate ),
     });
+
+    if (!response.ok)
+    {
+      throw new Error(`Failed to update task: ${response.status} ${response.statusText}`);
+    }
+
     return await response.json();
   }
 );
 
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
-  async (id: number | string) => {
+  async (id: number) => {
     const idStr = String(id);
     await fetch(`${API_URL}/${idStr}`, {
       method: 'DELETE',
     });
-    return idStr;
+    return id;
   }
 );
 
@@ -122,11 +131,7 @@ const taskSlice = createSlice({
 });
 
 export const selectTasks = (state: { tasks: TaskState }) => state.tasks.tasks;
-export const selectFilters = (state: { tasks: TaskState }) =>
-  state.tasks.filters;
-
-type SortField = keyof Pick<Task, "title" | "createdAt" | "priority" | "status" | "category">;
-type SortOrder = "asc" | "desc";
+export const selectFilters = (state: { tasks: TaskState }) => state.tasks.filters;
 
 const priorityOrder = (priority: Priority) => priorities.indexOf(priority);
 const statusOrder = (status: Status) => statuses.indexOf(status);
@@ -150,7 +155,7 @@ export const selectFilteredTasks = createSelector(
 
     if (filters.sortBy)
     {
-      const sortBy = filters.sortBy as SortField;
+      const sortBy = filters.sortBy as SortBy;
       const sortOrder = filters.sortOrder as SortOrder;
 
       filtered = [...filtered].sort((a, b) => {
@@ -162,13 +167,16 @@ export const selectFilteredTasks = createSelector(
           const dateB = new Date(b.createdAt);
           comparison = dateA.getTime() - dateB.getTime();
         }
-        else if (sortBy === "priority") {
+        else if (sortBy === "priority")
+        {
           comparison = priorityOrder(a.priority) - priorityOrder(b.priority);
         }
-        else if (sortBy === "status") {
+        else if (sortBy === "status")
+        {
           comparison = statusOrder(a.status) - statusOrder(b.status);
         }
-        else if (sortBy === "category") {
+        else if (sortBy === "category")
+        {
           comparison = categoryOrder(a.category) - categoryOrder(b.category);
         }
         else
@@ -178,7 +186,6 @@ export const selectFilteredTasks = createSelector(
         }
 
         return sortOrder === "asc" ? comparison : -comparison;  
-        return 0;
       });
     }
 

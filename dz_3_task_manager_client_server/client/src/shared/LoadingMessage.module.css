@@ -1,0 +1,31 @@
+.loading
+{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: var(--font-mid-size);
+  font-family: var(----font-muller-medium);
+  color: rgba(var(--main_color));
+  text-align: center;
+  animation: colorCycle 10s infinite ease-in-out;
+  text-transform: uppercase;
+}
+
+@keyframes colorCycle
+{
+  0% {
+    color: rgba(var(--main_color));
+  }
+  25% {
+    color: rgba(var(--base_color_1));
+  }
+  50% {
+    color: rgba(var(--base_color_2));
+  }
+  75% {
+    color: rgba(var(--base_color_3));
+  }
+  100% {
+    color: rgba(var(--main_color));
+  }
+}

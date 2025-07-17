@@ -13,6 +13,7 @@ import type { AppDispatch } from '@/entities/model/store';
 import styles from "./TaskDetails.module.css";
 import global from "@app/App.module.css";
 import CustomSelect from "@/shared/CustomSelect";
+import LoadingMessage from "@/shared/LoadingMessage";
 
 interface TaskDetailsProps {
   id: string;
@@ -47,8 +48,10 @@ export default function TaskDetails({ id }: TaskDetailsProps)
   // console.log(isNew);
   if (!isNew && loading){
     return (
-      <div className={styles.container}>
-        <div className={styles.lit_container}>Загрузка задачи...</div>
+      <div className={`${styles.container} ${styles.loader_container}`}>
+        <div className={styles.lit_container}>
+          <LoadingMessage />
+        </div>
       </div>
     );
   }
@@ -63,7 +66,8 @@ export default function TaskDetails({ id }: TaskDetailsProps)
   }
 
   const handleSave = () => {
-    if (isNew) {
+    if (isNew)
+    {
       dispatch(
         createTask({
           title,
@@ -74,7 +78,9 @@ export default function TaskDetails({ id }: TaskDetailsProps)
           createdAt: new Date().toISOString(),
         }),
       );
-    } else {
+    } 
+    else
+    {
       dispatch(
         updateTask({
           ...task!,

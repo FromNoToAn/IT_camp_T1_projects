@@ -27,20 +27,23 @@ export type Task = {
   createdAt: string;
 };
 
+export type SortBy =  "title" | "priority" | "status" | "category" | "createdAt";
+export type SortOrder = "asc" | "desc";
+
 export interface Filters{
   category: Category | "All";
   status: Status | "All";
   priority: Priority | "All";
-  createdFrom?: string;
-  sortBy?: "createdAt" | "title" | "priority";
-  sortOrder?: "asc" | "desc";
+  createdAt?: string;
+  sortBy?: SortBy;
+  sortOrder?: SortOrder;
 }
 
 export const defaultFilters: Filters = {
   category: "All",
   status: "All",
   priority: "All",
-  createdFrom: '',
+  createdAt: '',
   sortBy: "createdAt",
   sortOrder: "asc",
 };
