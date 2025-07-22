@@ -1,0 +1,16 @@
+curl -i -c cookies.txt -X POST http://localhost:4000/api/v1/auth/login ^
+  -H "Content-Type: application/json" ^
+  -d "{\"email\":\"admin@inno.tech\",\"password\":\"admin\"}"
+
+curl -b cookies.txt http://localhost:4000/api/v1/auth/me
+
+curl -b cookies.txt http://localhost:4000/api/v1/users
+
+
+curl -i -c cookies.txt -X POST http://localhost:4000/api/v1/auth/login ^
+  -H "Content-Type: application/json" ^
+  -d "{\"email\":\"admin@inno.tech\",\"password\":\"admin\"}"
+
+curl -i -b cookies.txt -X PATCH "http://localhost:4000/api/v1/users/ab16d73d-003c-4a96-bfe9-d305ad28bbec" ^
+ -H "Content-Type: application/json" ^
+ -d "{\"name\":\"Иван\",\"surName\":\"Иванов\",\"fullName\":\"Иван Иванович Иванов\",\"birthDate\":\"1990-05-15T00:00:00.000Z\",\"telephone\":\"+79991231231\",\"employment\":\"developer\",\"userAgreement\":true}"
