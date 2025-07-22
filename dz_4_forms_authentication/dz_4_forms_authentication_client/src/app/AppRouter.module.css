@@ -1,0 +1,45 @@
+.app_router {
+  display: flex;
+  width: 100%;
+  min-height: 100svh;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  padding: calc(var(--mini-margin));
+}
+
+.app_router_header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: calc(var(--mini-margin) / 2);
+}
+
+.app_router_sidebar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: calc(var(--mini-margin) / 2);
+  height: 100%;
+}
+
+.app_router_outlet {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: auto;
+  /* scrollbar-width: thin; */
+}
+
+.app_router_outlet::-webkit-scrollbar {
+  height: calc(var(--index) / 4);
+}
+
+.app_router_outlet::-webkit-scrollbar-track {
+  background-color: rgba(var(--dark_dark_color));
+}
+
+.app_router_outlet::-webkit-scrollbar-thumb {
+  border-radius: calc(var(--border-radius) / 6);
+  background-color: rgba(var(--main_color));
+}

@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--mini-margin) / 2);
+  background: rgba(var(--dark_dark_color));
+  border-radius: var(--border-radius);
+}
+
+.title {
+  font-size: var(--font-big-size);
+  font-family: var(--font-muller-redular);
+  text-transform: uppercase;
+}
+
+.title_items {
+  position: relative;
+}
+
+.error {
+  color: #e53935;
+  font-size: 0.95em;
+  margin-right: 8px;
+}

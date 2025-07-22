@@ -1,0 +1,216 @@
+/* Глобальные переменные и базовые стили */
+
+@font-face {
+  font-family: muller_bold;
+  src: url("/src/shared/fonts/MullerBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: muller_medium;
+  src: url("/src/shared/fonts/MullerMedium.woff2") format("woff2");
+}
+@font-face {
+  font-family: muller_regular;
+  src: url("/src/shared/fonts/MullerRegular.woff2") format("woff2");
+}
+
+:global(*) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+}
+
+:global(:root) {
+  --main_color: 255, 255, 255;
+
+  --gray_color: 85, 85, 85;
+
+  --dark_color: 37, 37, 37;
+  --dark_dark_color: 25, 25, 25;
+  --black_color: 0, 0, 0;
+
+  --base_color_1: 0, 122, 255; /* blue */
+  --base_color_2: 255, 149, 0; /* orange */
+  --base_color_3: 255, 59, 48; /* red */
+
+  --index: calc(1vw + 1vh);
+
+  --big-margin: calc(var(--index) * 9 - 10vh);
+  --mini-margin: calc(var(--index) * 1.25);
+
+  --border-size: calc(var(--index) / 6);
+  --border-radius: calc(var(--index));
+
+  --font-muller-bold: "muller_bold";
+  --font-muller-medium: "muller_medium";
+  --font-muller-regular: "muller_regular";
+
+  --font-big-size: calc((var(--index) * 0.9 - 0.24vh) * 1.7);
+  --font-mid-size: calc((var(--index) * 0.9 - 0.24vh) * 1.22);
+  --font-size: calc((var(--index) * 0.9 - 0.1vh));
+  --font-mini-size: calc((var(--index) * 0.9 - 0.1vh) / 1.25);
+
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: var(--font-muller-regular);
+  font-size: var(--font-size);
+  line-height: 1.5;
+  font-weight: 400;
+
+  -webkit-tap-highlight-color: transparent;
+
+  color: rgba(var(--main_color));
+  background-color: rgba(var(--black_color));
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  height: 100%;
+  width: 100%;
+
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: calc(var(--index) / 3);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(var(--dark_dark_color));
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: calc(var(--border-radius) / 4);
+  background-color: rgba(var(--main_color));
+}
+
+button {
+  all: unset;
+}
+
+.custom_button {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--mini-margin) / 4);
+  padding: calc(var(--mini-margin) / 4) calc(var(--mini-margin) / 2);
+  font-family: var(--font-muller-medium);
+  font-size: var(--font-size);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  border-radius: calc(var(--border-radius) / 1.5);
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--black_color));
+  color: rgba(var(--black_color));
+  background: rgba(var(--main_color));
+  text-transform: uppercase;
+  transition: ease-in-out 0.25s;
+  align-self: flex-end;
+}
+
+.custom_button:hover {
+  background: rgba(var(--gray_color));
+  color: var(--main_color);
+}
+
+.dark_button {
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--main_color));
+  color: rgba(var(--main_color));
+  background: rgba(var(--black_color));
+}
+
+.dark_button:hover {
+  background: rgba(var(--gray_color));
+}
+
+.rainbow_button {
+  z-index: 0;
+  position: relative;
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--main_color));
+  color: var(--main_color);
+  background: rgba(var(--black_color));
+  transition: 0.25s ease-in-out;
+  overflow: hidden;
+}
+
+.rainbow_button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--base_color_1), 0.8) 0%,
+    rgba(var(--base_color_2), 0.8) 50%,
+    rgba(var(--base_color_3), 0.8) 100%
+  );
+  background-color: var(--black_color);
+  transition: 0.25s ease-in-out;
+  opacity: 1;
+}
+
+.rainbow_button:hover::before {
+  opacity: 0;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-muller-medium);
+  font-size: var(--font-size);
+  color: var(--black_color);
+  text-transform: uppercase;
+}
+
+.input {
+  display: flex;
+  width: 100%;
+  font-family: var(--font-muller-medium);
+  font-size: var(--font-size);
+  color: rgba(var(--black_color));
+  padding: calc(var(--mini-margin) / 2);
+  background: rgba(var(--main_color));
+  transition: ease-in-out 0.25s;
+  border-radius: calc(var(--border-radius) / 1.5);
+  /* border: var(--border-size) solid rgba(var(--black_color));
+  border-width: 0 var(--border-size) var(--border-size) 0; */
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--black_color));
+  border: none !important;
+  height: 100%;
+}
+
+.input:disabled {
+  background: rgba(var(--gray_color));
+  cursor: not-allowed;
+}
+
+input[type="date"] {
+  width: 100%;
+  justify-content: center;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: inline-flex;
+}
+
+label:has(input[type="checkbox"]) {
+  display: inline-flex;
+  gap: calc(var(--mini-margin) / 2);
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  box-sizing: border-box;
+  width: calc(var(--mini-margin));
+  height: calc(var(--mini-margin));
+  accent-color: rgba(var(--gray_color));
+  border-radius: 50% !important;
+  box-shadow: var(--border-size) var(--border-size) rgba(var(--black_color));
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+}
+
+input[type="checkbox"]:hover {
+  color: rgba(var(--gray_color));
+}
