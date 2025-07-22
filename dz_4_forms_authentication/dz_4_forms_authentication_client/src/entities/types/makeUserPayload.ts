@@ -1,4 +1,4 @@
-import type { UserCreateForm, UserEditForm } from "./types/types";
+import type { UserCreateForm, UserEditForm } from "./types";
 
 export function makeUserPayload(values: UserCreateForm | UserEditForm) {
   const payload: any = {

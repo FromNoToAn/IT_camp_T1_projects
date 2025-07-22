@@ -8,6 +8,11 @@ import * as session from 'express-session';
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: 'https://t1-dz4.proffloud.ru',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Users API')
     .setDescription('t1 camp form api')

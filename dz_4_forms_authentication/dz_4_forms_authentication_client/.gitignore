@@ -25,3 +25,4 @@ dist-ssr
 
 # Камень я не дам
 .env
+.env.production

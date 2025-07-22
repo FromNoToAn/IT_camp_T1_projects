@@ -1,8 +1,10 @@
+const BASE_URL = import.meta.env.VITE_API_TARGET;
+
 export async function login(email: string, password: string) {
   let res: Response;
 
   try {
-    res = await fetch("/api/v1/auth/login", {
+    res = await fetch(`${BASE_URL}/api/v1/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -24,7 +26,7 @@ export async function login(email: string, password: string) {
 }
 
 export async function getMe() {
-  const res = await fetch("/api/v1/auth/me", {
+  const res = await fetch(`${BASE_URL}/api/v1/auth/me`, {
     credentials: "include",
   });
   if (!res.ok) {
@@ -34,19 +36,19 @@ export async function getMe() {
 }
 
 export async function getUsers() {
-  const res = await fetch("/api/v1/users", { credentials: "include" });
+  const res = await fetch(`${BASE_URL}/api/v1/users`, { credentials: "include" });
   if (!res.ok) throw new Error("Ошибка загрузки пользователей");
   return res.json();
 }
 
 export async function getUserById(id: string | number) {
-  const res = await fetch(`/api/v1/users/${id}`, { credentials: "include" });
+  const res = await fetch(`${BASE_URL}/api/v1/users/${id}`, { credentials: "include" });
   if (!res.ok) throw new Error("Ошибка загрузки пользователя");
   return res.json();
 }
 
 export async function createUser(data: any) {
-  const res = await fetch("/api/v1/users", {
+  const res = await fetch(`${BASE_URL}/api/v1/users`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -74,7 +76,7 @@ export async function createUser(data: any) {
 }
 
 export async function updateUser(id: string | number, data: any) {
-  const res = await fetch(`/api/v1/users/${id}`, {
+  const res = await fetch(`${BASE_URL}/api/v1/users/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -90,7 +92,7 @@ export async function updateUser(id: string | number, data: any) {
 }
 
 export async function deleteUser(id: string | number) {
-  const response = await fetch(`/api/v1/users/${id}`, {
+  const response = await fetch(`${BASE_URL}/api/v1/users/${id}`, {
     method: "DELETE",
   });
 
@@ -102,7 +104,7 @@ export async function deleteUser(id: string | number) {
 }
 
 export async function logout() {
-  const res = await fetch("/api/v1/auth/logout", {
+  const res = await fetch(`${BASE_URL}/api/v1/auth/logout`, {
     method: "POST",
     credentials: "include",
   });
