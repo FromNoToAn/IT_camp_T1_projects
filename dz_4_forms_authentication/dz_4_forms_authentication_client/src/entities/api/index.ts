@@ -94,6 +94,7 @@ export async function updateUser(id: string | number, data: any) {
 export async function deleteUser(id: string | number) {
   const response = await fetch(`${BASE_URL}/api/v1/users/${id}`, {
     method: "DELETE",
+    credentials: "include",
   });
 
   if (!response.ok) {
